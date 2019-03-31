@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Date函数——倒计时</title>
+		<script src="jq2.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			h2{margin: 100px auto;width: 800px;}
+			.red{color: red;}
+		</style>
+	</head>
+	<body>
+		<h2>距离清明节（2019.4.5零点）放假还有：
+			<span id="day"></span>天&nbsp;
+			<span id="hour"></span>时&nbsp;
+			<span id="minute"></span>分&nbsp;
+			<span id="second"></span>秒
+		</h2>
+	</body>
+	<script type="text/javascript">
+		$(()=>{
+			setInterval(()=>{
+				let time = new Date(2019,3,5).getTime() - new Date().getTime();
+				let date = time/24/3600/1000;
+				let day = Math.floor(date);
+				let hour = Math.floor((date-day)*24);
+				let minute = Math.floor(((date-day)*24-hour)*60);
+				let second = Math.floor(((((date-day)*24-hour)*60)-minute)*60);
+				console.log(day+":"+hour+":"+minute+":"+second);
+				
+				if(day<10){
+					$("#day").html("0"+day+"&nbsp;");
+				}else{
+					$("#day").html(day+"&nbsp;");
+				}
+				if(hour<10){
+					$("#hour").html("0"+hour+"&nbsp;");
+				}else{
+					$("#hour").html(hour+"&nbsp;");
+				}
+				if(minute<10){
+					$("#minute").html("0"+minute+"&nbsp;").addClass("red");
+				}else{
+					$("#minute").html(minute+"&nbsp;").addClass("red");
+				}
+				if(second<10){
+					$("#second").html("0"+second+"&nbsp;").addClass("red");
+				}else{
+					$("#second").html(second+"&nbsp;").addClass("red");
+				}
+			},1000);
+		});
+	</script>
+</html>
